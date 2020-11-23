@@ -1,9 +1,13 @@
+// All card Numbers in numeric
 let cardN = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
+// Al card Types
 let cardT = ["hearts", "spades", "clubs", "diamond"];
 
+// Random item from array
 let r = (arr) => Math.floor(Math.random() * arr.length);
 
+// Function From Numeric to String for J,Q,K,A when paired in Array
 function cardSort(arr) {
   return arr.map((e) =>
     e[0] === 11
@@ -17,6 +21,8 @@ function cardSort(arr) {
       : e
   );
 }
+
+// Single num to String Function for J,Q,K,A
 
 function numberSort(n) {
   switch (n) {
@@ -37,18 +43,16 @@ function numberSort(n) {
 let drawButton = document.querySelector(".draw");
 let container = document.querySelector(".display");
 
-
 var newArr = [];
 let display;
 
 drawButton.addEventListener("click", (e) => {
-  let sorting = document.querySelectorAll(".rowDiv")
+  let sorting = document.querySelectorAll(".rowDiv");
   for (let p of sorting) {
-    p.innerHTML = ""
+    p.innerHTML = "";
   }
   container.innerHTML = "";
 
-  
   let amount = document.getElementById("input").value;
   newArr = [];
 
@@ -66,7 +70,6 @@ drawButton.addEventListener("click", (e) => {
 
   for (let j = 0; j < display.length; j++) {
     let div = document.createElement("div");
-    
 
     div.innerHTML +=
       '<div class="card mx-1"><div class="row top"><div class="col-md-12 d-flex justify-content-start icon1"><span class="icon ' +
@@ -98,51 +101,48 @@ let logy = document.querySelector(".logy");
 const selectSort = (arr) => {
   let min = 0;
   let counter = 0;
-  while (min < arr[arr.length-1][0]){
-      for(let i = min+1; i < arr.length; i++) {
-        if (arr[min][0] > arr[i][0]) {
-          let aux = arr[min];
-          arr[min] = arr[i];
-          arr[i] = aux;
-          let newDiv = document.createElement("div");
-      newDiv.classList.add("rowDiv")
-      newDiv.classList.add("row");
+  while (min < arr[arr.length - 1][0]) {
+    for (let i = min + 1; i < arr.length; i++) {
+      if (arr[min][0] > arr[i][0]) {
+        let aux = arr[min];
+        arr[min] = arr[i];
+        arr[i] = aux;
+        let newDiv = document.createElement("div");
+        newDiv.classList.add("rowDiv");
+        newDiv.classList.add("row");
 
-      let spam = document.createElement("span");
-      spam.classList.add("iteracion");
-      spam.innerHTML = "<p>" + counter + "</p>";
+        let spam = document.createElement("span");
+        spam.classList.add("iteracion");
+        spam.innerHTML = "<p>" + counter + "</p>";
 
-      newDiv.appendChild(spam);
+        newDiv.appendChild(spam);
 
-      for (let e of arr) {
-        newDiv.innerHTML +=
-          '<div class="card mx-1 my-2"><div class="row top"><div class="col-md-12 d-flex justify-content-start icon1"><span class="icon ' +
-          e[1] +
-          '">&' +
-          e[1] +
-          ";</span><div></div></div></div>" +
-          '<div class="row middle"><div class="col-md-12 d-flex justify-content-center align-items-center numberP"><p class="number ' +
-          e[1] +
-          '">' +
-          numberSort(e[0]) +
-          "</p></div></div>" +
-          '<div class="row bot"><div class="col-md-12 d-flex justify-content-end align-items-end icon2"><span class="icon ' +
-          e[1] +
-          '">&' +
-          e[1] +
-          ";</span></div></div>";
+        for (let e of arr) {
+          newDiv.innerHTML +=
+            '<div class="card mx-1 my-2"><div class="row top"><div class="col-md-12 d-flex justify-content-start icon1"><span class="icon ' +
+            e[1] +
+            '">&' +
+            e[1] +
+            ";</span><div></div></div></div>" +
+            '<div class="row middle"><div class="col-md-12 d-flex justify-content-center align-items-center numberP"><p class="number ' +
+            e[1] +
+            '">' +
+            numberSort(e[0]) +
+            "</p></div></div>" +
+            '<div class="row bot"><div class="col-md-12 d-flex justify-content-end align-items-end icon2"><span class="icon ' +
+            e[1] +
+            '">&' +
+            e[1] +
+            ";</span></div></div>";
 
           fluid.appendChild(newDiv);
         }
-        counter++
+        counter++;
       }
-      
-      }
-      min++;
-      
-      
+    }
+    min++;
   }
-return arr;
+  return arr;
 };
 
 sortButton.addEventListener("click", (e) => {
